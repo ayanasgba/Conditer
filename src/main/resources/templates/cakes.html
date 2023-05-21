@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Торты</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .product-card img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">SweetTrio</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarSupportedContent">
+            <nav class="nav justify-content-end">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" th:href="@{/main}">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" th:href="@{/about}">О нас</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" th:href="@{/order}">Заказать</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" th:href="@{/contacts}">Контакты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" th:href="@{/register}">Регистрация</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" th:href="@{/login}">Авторизация</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <h1>Торты</h1>
+    </div>
+
+    <div sec:authorize="hasRole('ADMIN')" class="row">
+        <div class="col-lg-3">
+            <a th:href="@{/cakes/cakes_create}" class="btn btn-primary btn-sm mb-3"> Добавить новый продукт</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4" th:each="cakes: ${cakes}">
+            <div class="product-card">
+                <img th:src="${cakes.photo}" alt="Product Image">
+                <h4 th:text="${cakes.name}"></h4>
+                <p th:text="${cakes.description}"></p>
+                <p th:text="${cakes.price}"></p>
+                <div>
+                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/cakes/cakes_edit/{id}(id=${cakes.id})}"
+                       class="btn btn-primary">Редактировать</a>
+                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/cakes/{id}(id=${cakes.id})}"
+                       class="btn btn-danger">Удалить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+
+</html>

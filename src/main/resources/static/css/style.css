@@ -1,0 +1,17 @@
+body{
+  background: url(/images/bgc.jpg) no-repeat center / cover;
+}
+.main_image {
+    width:350px;
+    height:350px;
+    margin: 20px;
+}
+a {
+    text-decoration: none;
+    color: white;
+}
+
+h1, h4, h2, p {
+    color: white;
+}
+

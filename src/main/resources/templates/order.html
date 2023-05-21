@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Заказать</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">SweetTrio</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarSupportedContent">
+            <nav class="nav justify-content-end">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" th:href="@{/main}">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" th:href="@{/about}">О нас</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" th:href="@{/order}">Заказать</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" th:href="@{/contacts}">Контакты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" th:href="@{/register}">Регистрация</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" th:href="@{/login}">Авторизация</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</nav>
+<div class = "container">
+    <div class = "row">
+        <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h1 class = "text-center"> Заказать </h1>
+            <div class = "card-body">
+                <form th:action="@{/order/save}" th:object = "${order}" th:method="POST">
+                    <div class ="form-group">
+                        <label> Название </label>
+                        <input
+                                type = "text"
+                                name = "productName"
+                                th:field = "*{productName}"
+                                class = "form-control"
+                                placeholder="Введите название продукта: "
+                        />
+                    </div>
+
+                    <div class ="form-group">
+                        <label> quantity </label>
+                        <input
+                                type = "text"
+                                name = "quantity"
+                                th:field = "*{quantity}"
+                                class = "form-control"
+                                placeholder="Введите quantity продукта: "
+                        />
+                    </div>
+
+                    <div class ="form-group">
+                        <label> phone_number </label>
+                        <input
+                                type = "text"
+                                name = "phoneNumber"
+                                th:field = "*{phoneNumber}"
+                                class = "form-control"
+                                placeholder="Введите phone_number: "
+                        />
+                    </div>
+
+                    <div class ="form-group">
+                        <label> address </label>
+                        <input
+                                type = "text"
+                                name = "address"
+                                th:field = "*{address}"
+                                class = "form-control"
+                                placeholder="Введите address: "
+                        />
+                    </div>
+
+
+                    <div class ="form-group">
+                        <label> personal_property </label>
+                        <input
+                                type = "text"
+                                name = "personalProperty"
+                                th:field = "*{personalProperty}"
+                                class = "form-control"
+                                placeholder="Введите personal_property: "
+                        />
+                    </div>
+
+
+                    <div class = "box-footer">
+                        <button type="submit" class = "btn btn-primary">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

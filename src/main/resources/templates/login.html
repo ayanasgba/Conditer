@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">SweetTrio</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarSupportedContent">
+            <nav class="nav justify-content-end">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" th:href="@{/main}">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" th:href="@{/about}">О нас</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" th:href="@{/order}">Заказать</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" th:href="@{/contacts}">Контакты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" th:href="@{/register}">Регистрация</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" th:href="@{/login}">Авторизация</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</nav>
+<br />
+<br />
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div th:if="${param.error}">
+                <div class="alert alert-danger">Неправильный адрес почты или пароль.</div>
+            </div>
+            <div th:if="${param.logout}">
+                <div class="alert alert-success">Вы вышли из аккаунта.</div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Авторизоваться</h3>
+                </div>
+                <div class="card-body">
+                    <form
+                            method="post"
+                            th:action="@{/login}"
+                            class="form-horizontal"
+                            role="form"
+                    >
+                        <div class="mb-3">
+                            <label for="username" class="control-label">Email</label>
+                            <input type="text"
+                                   id="username"
+                                   name="username"
+                                   class="form-control"
+                                   placeholder="Email"
+                            />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="control-label">Пароль</label>
+                            <input type="password"
+                                   id="password"
+                                   name="password"
+                                   class="form-control"
+                                   placeholder="Пароль"
+                            />
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary">Войти</button>
+                            <span> Нет аккаунта?
+                            <a th:href="@{/register}"> Зарегистрироваться</a>
+                        </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
